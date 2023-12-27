@@ -1,0 +1,56 @@
+-- Создание таблицы "Авторы"
+CREATE TABLE Authors (
+    author_id SERIAL PRIMARY KEY,
+    author_name VARCHAR(255) NOT NULL
+);
+
+-- Создание таблицы "Жанры"
+CREATE TABLE Genres (
+    genre_id SERIAL PRIMARY KEY,
+    genre_name VARCHAR(255) NOT NULL
+);
+
+-- Создание таблицы "Издательства"
+CREATE TABLE Publishers (
+    publisher_id SERIAL PRIMARY KEY,
+    publisher_name VARCHAR(255) NOT NULL
+);
+
+-- Создание таблицы "Книги"
+CREATE TABLE Books (
+    book_id SERIAL PRIMARY KEY,
+    title VARCHAR(255) NOT NULL,
+    author_id INTEGER REFERENCES Authors(author_id),
+    genre_id INTEGER REFERENCES Genres(genre_id)
+);
+
+-- Создание таблицы "Читатели"
+CREATE TABLE Readers (
+    reader_id SERIAL PRIMARY KEY,
+    reader_name VARCHAR(255) NOT NULL,
+    contact_info VARCHAR(255)
+);
+
+-- Создание таблицы "Выдача книг"
+CREATE TABLE BookLoans (
+    loan_id SERIAL PRIMARY KEY,
+    book_id INTEGER REFERENCES Books(book_id),
+    reader_id INTEGER REFERENCES Readers(reader_id),
+    loan_date DATE NOT NULL,
+    return_date DATE
+);
+
+-- Создание таблицы "Оценки книг"
+CREATE TABLE BookRatings (
+    rating_id SERIAL PRIMARY KEY,
+    book_id INTEGER REFERENCES Books(book_id),
+    reader_id INTEGER REFERENCES Readers(reader_id),
+    rating INTEGER NOT NULL
+);
+
+-- Создание таблицы "Адреса авторов"
+CREATE TABLE AuthorAddresses (
+    address_id SERIAL PRIMARY KEY,
+    author_id INTEGER REFERENCES Authors(author_id),
+    address VARCHAR(255) NOT NULL
+);
