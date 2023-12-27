@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Book Loans List</title>
+    <link rel="stylesheet" href="/css/styles.css" />
+</head>
+<body>
+<h2>Book Loans List</h2>
+<table>
+    <thead>
+    <tr>
+        <th>ID</th>
+        <th>Book</th>
+        <th>Reader</th>
+        <th>Loan Date</th>
+        <th>Return Date</th>
+        <th>Actions</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="bookLoan : ${bookLoans}">
+        <td th:text="${bookLoan.loanId}"></td>
+        <td th:text="${bookLoan.book.title}"></td>
+        <td th:text="${bookLoan.reader.readerName}"></td>
+        <td th:text="${#dates.format(bookLoan.loanDate, 'yyyy-MM-dd')}"></td>
+        <td th:text="${#dates.format(bookLoan.returnDate, 'yyyy-MM-dd')}"></td>
+        <td>
+            <a th:href="@{/book-loans/{id}(id=${bookLoan.loanId})}">View</a>
+            <a th:href="@{/book-loans/{id}/edit(id=${bookLoan.loanId})}">Edit</a>
+            <a th:href="@{/book-loans/{id}/delete(id=${bookLoan.loanId})}" onclick="return confirm('Are you sure?')">Delete</a>
+        </td>
+    </tr>
+    </tbody>
+</table>
+<a th:href="@{/book-loans/new}">Add New Book Loan</a>
+</body>
+</html>

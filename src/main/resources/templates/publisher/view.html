@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Book Loan Details</title>
+    <link rel="stylesheet" href="/css/styles.css" />
+</head>
+<body>
+<h2>Book Loan Details</h2>
+<p>ID: <span th:text="${bookLoan.loanId}"></span></p>
+<p>Book: <span th:text="${bookLoan.book.title}"></span></p>
+<p>Reader: <span th:text="${bookLoan.reader.readerName}"></span></p>
+<p>Loan Date: <span th:text="${#dates.format(bookLoan.loanDate, 'yyyy-MM-dd')}"></span></p>
+<p>Return Date: <span th:text="${#dates.format(bookLoan.returnDate, 'yyyy-MM-dd')}"></span></p>
+<a th:href="@{/book-loans}">Back to Book Loans List</a>
+</body>
+</html>

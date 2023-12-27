@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Add/Edit Author</title>
+    <link rel="stylesheet" href="/css/styles.css" />
+</head>
+<body>
+<h2 th:if="${author.authorId}">Edit Author</h2>
+<h2 th:unless="${author.authorId}">Add New Author</h2>
+<form th:object="${author}" th:action="@{'/authors/' + ${author.authorId}}" method="post">
+    <input type="hidden" th:field="*{authorId}" />
+    <label>Name: <input type="text" th:field="*{authorName}" /></label>
+    <button type="submit">Save</button>
+</form>
+<a th:if="${author.authorId}" th:href="@{'/authors/' + ${author.authorId}}">Back to View</a>
+<a th:href="@{/authors}">Back to Authors List</a>
+</body>
+</html>

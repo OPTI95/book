@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Add/Edit Book</title>
+    <link rel="stylesheet" href="/css/styles.css" />
+</head>
+<body>
+<h2 th:if="${book.bookId}">Edit Book</h2>
+<h2 th:unless="${book.bookId}">Add New Book</h2>
+<form th:object="${book}" th:action="@{'/books/' + ${book.bookId}}" method="post">
+    <input type="hidden" th:field="*{bookId}" />
+    <label>Title: <input type="text" th:field="*{title}" /></label>
+    <label>Author: <input type="text" th:field="*{author.authorName}" /></label>
+    <label>Genre: <input type="text" th:field="*{genre.genreName}" /></label>
+    <button type="submit">Save</button>
+</form>
+<a th:if="${book.bookId}" th:href="@{'/books/' + ${book.bookId}}">Back to View</a>
+<a th:href="@{/books}">Back to Books List</a>
+</body>
+</html>

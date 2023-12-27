@@ -1,0 +1,13 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Genre Details</title>
+    <link rel="stylesheet" href="/css/styles.css" />
+</head>
+<body>
+<h2>Genre Details</h2>
+<p>ID: <span th:text="${genre.genreId}"></span></p>
+<p>Name: <span th:text="${genre.genreName}"></span></p>
+<a th:href="@{/genres}">Back to Genres List</a>
+</body>
+</html>

@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Add/Edit Book Loan</title>
+    <link rel="stylesheet" href="/css/styles.css" />
+</head>
+<body>
+<h2 th:if="${bookLoan.loanId}">Edit Book Loan</h2>
+<h2 th:unless="${bookLoan.loanId}">Add New Book Loan</h2>
+<form th:object="${bookLoan}" th:action="@{/book-loans/new}" method="post">
+    <input type="hidden" th:field="*{loanId}" />
+    <label>Book: <input type="text" th:field="*{book.title}" /></label>
+    <label>Reader: <input type="text" th:field="*{reader.readerName}" /></label>
+    <label>Loan Date: <input type="text" th:field="*{loanDate}" /></label>
+    <label>Return Date: <input type="text" th:field="*{returnDate}" /></label>
+    <button type="submit">Save</button>
+</form>
+
+<a th:if="${bookLoan.loanId}" th:href="@{/book-loans/{id}(id=${bookLoan.loanId})}">Back to View</a>
+<a th:href="@{/book-loans}">Back to Book Loans List</a>
+</body>
+</html>

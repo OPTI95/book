@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Add/Edit Genre</title>
+    <link rel="stylesheet" href="/css/styles.css" />
+</head>
+<body>
+<h2 th:if="${genre.genreId}">Edit Genre</h2>
+<h2 th:unless="${genre.genreId}">Add New Genre</h2>
+<form th:object="${genre}" th:action="@{'/genres/' + ${genre.genreId}}" method="post">
+    <input type="hidden" th:field="*{genreId}" />
+    <label>Name: <input type="text" th:field="*{genreName}" /></label>
+    <button type="submit">Save</button>
+</form>
+<a th:if="${genre.genreId}" th:href="@{'/genres/' + ${genre.genreId}}">Back to View</a>
+<a th:href="@{/genres}">Back to Genres List</a>
+</body>
+</html>
